@@ -11,6 +11,6 @@ public:
                 r=m;
             }
         }
-        return nums[l];
+        return nums[r];
     }
 };
