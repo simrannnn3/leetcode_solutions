@@ -3,15 +3,14 @@ public:
     int findMin(vector<int>& nums) {
         int l=0,r=nums.size()-1;
         int ans=nums[r];
-        while(l<=r){
+        while(l<r){
             int m=l+(r-l)/2;
-            if(nums[m]<=nums[r]){
-                ans=min(ans,nums[m]);
-                r=m-1;
-            }else{
+            if(nums[m]>nums[r]){
                 l=m+1;
+            }else{
+                r=m;
             }
         }
-        return ans;
+        return nums[l];
     }
 };
