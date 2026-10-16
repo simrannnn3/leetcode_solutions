@@ -1,20 +1,11 @@
 class Solution {
 public:
-    double dist(vector<int>& p1, vector<int>& p2) {
-        return (p2[1] - p1[1]) * (p2[1] - p1[1]) +
-               (p2[0] - p1[0]) * (p2[0] - p1[0]);
+    int dist(vector<int>&p1,vector<int>&p2){
+        return (p1[0]-p2[0])*(p1[0]-p2[0])+ (p1[1]-p2[1])*(p1[1]-p2[1]);
     }
-
-    bool check(vector<int>& p1, vector<int>& p2, vector<int>& p3,
-               vector<int>& p4) {
-        return dist(p1, p2) > 0 && dist(p1, p3) > 0 &&
-               dist(p1, p2) == dist(p2, p3) && dist(p2, p3) == dist(p3, p4) &&
-               dist(p3, p4) == dist(p4, p1) && dist(p1, p3) == dist(p2, p4);
-    }
-
-    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3,
-                     vector<int>& p4) {
-        return check(p1, p2, p3, p4) || check(p1, p4, p2, p3) ||
-               check(p1, p3, p4, p2);
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+        vector<vector<int>>p{p1,p2,p3,p4};
+        sort(p.begin(),p.end());
+        return dist(p[0],p[1])!=0 && dist(p[0],p[1])==dist(p[1],p[3]) && dist(p[1],p[3])==dist(p[3],p[2]) && dist(p[3],p[2])==dist(p[2],p[0]) && dist(p[2],p[1])==dist(p[0],p[3]);
     }
 };
